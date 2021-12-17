@@ -2,9 +2,11 @@ class rkhunter_yum_update {
   case $facts['os']['release']['major'] {
     '7': {
       $pkg = 'yum-plugin-post-transaction-actions'
+      $file = '/etc/yum/post-actions/rkhunter.action'
     }
     '8': {
       $pkg = 'python3-dnf-plugin-post-transaction-actions'
+      $file = '/etc/dnf/plugins/post-transaction-actions.d/rkhunter.action'
     }
   }
 
@@ -20,14 +22,15 @@ fi'
     name => $pkg,
   }
 
-  file { '/etc/yum/post-actions/rkhunter.action':
+  file { 'rkhunter.action':
     ensure => file,
+    path => $file,
     content => "*:any:echo $name >> /var/lib/rkhunter/updated.txt",
     require => Package['post-transactions'],
   }
 
-  cron::daily { '0rkhunter':
-    command => $job,
-    user => root,
+  file { '/etc/cron.daily/0rkhunter':
+    ensure => file,
+    content => $job,
   }
 }    
