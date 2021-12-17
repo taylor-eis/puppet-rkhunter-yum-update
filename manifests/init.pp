@@ -17,7 +17,7 @@ fi'
 
   package { 'post-transactions':
     ensure => latest,
-    name => $pkgq,
+    name => $pkg,
   }
 
   file { '/etc/yum/post-actions/rkhunter.action':
