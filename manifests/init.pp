@@ -8,12 +8,12 @@ class rkhunter_yum_update {
     }
   }
 
-  $job = "#!/bin/bash
+  $job = '#!/bin/bash
 
 if [[ -f /var/lib/rkhunter/updated.txt ]] ; then
     while read in; do /usr/bin/rkhunter --propupdate "$in" > /dev/null; done < /var/lib/rkhunter/updated.txt
     rm -rf /var/lib/rkhunter/updated.txt
-fi"
+fi'
 
   package { 'post-transactions':
     ensure => latest,
