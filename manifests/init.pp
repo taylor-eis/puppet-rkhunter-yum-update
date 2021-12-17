@@ -1,4 +1,4 @@
-class rkhunter-yum-update {
+class rkhunter_yum_update {
   case $facts['os']['release']['major'] {
     '7': {
       $pkg = 'yum-plugin-post-transaction-actions'
