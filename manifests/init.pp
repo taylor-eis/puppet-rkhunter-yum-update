@@ -25,12 +25,13 @@ fi'
   file { 'rkhunter.action':
     ensure => file,
     path => $file,
-    content => "*:any:echo $name >> /var/lib/rkhunter/updated.txt",
+    content => '*:any:echo $name >> /var/lib/rkhunter/updated.txt',
     require => Package['post-transactions'],
   }
 
   file { '/etc/cron.daily/0rkhunter':
     ensure => file,
     content => $job,
+    mode => "0755",
   }
 }    
