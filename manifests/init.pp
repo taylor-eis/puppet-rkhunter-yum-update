@@ -4,7 +4,7 @@ class rkhunter_yum_update {
       $pkg = 'yum-plugin-post-transaction-actions'
       $file = '/etc/yum/post-actions/rkhunter.action'
     }
-    '8': {
+    '8','9': {
       $pkg = 'python3-dnf-plugin-post-transaction-actions'
       $file = '/etc/dnf/plugins/post-transaction-actions.d/rkhunter.action'
     }
